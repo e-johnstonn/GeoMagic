@@ -11,13 +11,25 @@ python = "^3.12"
 fastapi = "^0.111.0"
 uvicorn = "^0.29.0"
 pydantic = "^2.7.1"
+geopy = "^2.4.1"
+requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 black = "^24.4.2"
 isort = "^5.10.1"
 mypy = "^1.10.0"
-pre-commit = "^3.7.1"
+types-requests = "^2.31.0.20240406"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+include = '\.pyi?$'
+exclude = '/(\.eggs|\.git|\.hg|\.mypy_cache|\.tox|\.venv|_build|buck-out|build|dist)/'
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+files = "app/"
