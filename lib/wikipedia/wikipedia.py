@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 import requests
 
@@ -42,10 +43,7 @@ class Wikipedia:
         ]
         return sorted(articles, key=lambda x: x.meters_distance)
 
-    def get_article_summary_from_api_article(
-        self, api_article: WikipediaAPIArticle
-    ) -> WikipediaArticle:
-        page_id = api_article.page_id
+    def get_article_summary_from_page_id(self, page_id: int) -> WikipediaArticle:
         params = {
             "action": "query",
             "format": "json",
@@ -62,7 +60,23 @@ class Wikipedia:
             summary=self._parse_wikipedia_text(
                 data["query"]["pages"][str(page_id)]["extract"]
             ),
+            categories=self.get_article_categories_from_page_id(page_id),
         )
+
+    def get_article_categories_from_page_id(self, page_id: int) -> List[str]:
+        params = {
+            "action": "query",
+            "format": "json",
+            "prop": "categories",
+            "pageids": page_id,
+            "cllimit": "30",
+        }
+        response = requests.get(self.BASE_URL, params=params)
+        data = json.loads(response.text)
+        return [
+            category["title"].split(":")[1]
+            for category in data["query"]["pages"][str(page_id)]["categories"]
+        ]
 
     def get_full_article_from_wikipedia_article(
         self, article: WikipediaArticle
