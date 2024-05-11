@@ -1,0 +1,61 @@
+# Operating system generated files #
+####################################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# Editor directories and files #
+###############################
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Dependency directories #
+##########################
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory #
+###############################
+.npm
+
+# Typescript compiled files #
+#############################
+*.tsbuildinfo
+
+# Python bytecode #
+###################
+__pycache__/
+*.py[cod]
+
+# Backup files #
+################
+*~
